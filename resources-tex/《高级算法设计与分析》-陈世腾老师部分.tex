@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\usepackage[english]{babel} 
+\usepackage{ctex} 
+\usepackage{graphicx} 
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} 
+\usepackage{amsmath} 
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings} 
+\usepackage{textcomp} 
+\usepackage{float}
+\usepackage{caption} 
+\usepackage{amsfonts}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize, 
+  breaklines=true, 
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, 
+  columns=flexible, 
+  inputencoding=utf8, 
+  extendedchars=true,
+  literate={Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1 {ü}{{\"u}}1 {ä}{{\"a}}1 {ö}{{\"o}}1 
+}
+
+% \title{高级算法设计与分析-2024陈世腾考试内容}
+\usepackage{titling}
+\renewcommand{\maketitlehookd}{\vspace{-5em}}
+\date{} 
+
+\begin{document}
+\section*{陈世腾老师随机算法2025年题目}
+(20 分) 具体的题目忘记了，要求使用概率工具证明定理，总共四小问。
+
+
+% \newpage
+\section*{陈世腾老师近似算法2025年题目}
+ (20 分) 3机器调度问题：第一问证明该问题的判断问题为NP-Hard问题；第二问从集合划分问题出发证明该问题是NP-Complte问题；第三问和第四问忘记了。
+
+\newpage
+\section*{陈世腾老师随机算法2024年题目}
+(15 分) 输入三个 $n \times n$ 的 0-1 矩阵 $A, B$ 和 $C$. 设计一个随机算法判定在 $\mathbb{F}_2$ 上是否有 $AB+C = I$ ($I$ 是单位矩阵. 所有矩阵乘法和加法都是 $\mathbb{F}_2$ 上的运算. 即算出来的结果要 mod 2)。 分析算法成功率和复杂度。
+
+要求: 
+
+\begin{enumerate}
+    \item 无论输入是什么, 算法必须有 $2/3$ 以上的正确率。
+    \item 比直接做矩阵乘法计算快 (矩阵乘法目前需要 $O(n^{2.371552})$ 的时间, 要比这个更好)。
+\end{enumerate}
+
+
+\newpage
+\section*{陈世腾老师随机算法、近似算法2024年题目}
+ (25 分) Not-all-equal SAT (NAE-SAT) 是这样一个问题: 给定一个合取范式 $\Phi = \bigwedge_{i=1}^{m} (l_{i_1} \lor l_{i_2} \lor l_{i_3})$。问是否存在对所有变量的一个赋值, 使得每个子句的几个文字取值不全相等。
+
+和 SAT 略有不同, SAT 允许一些子句全取 1。Not-all-equal SAT 不能。 一般来说我们把式子写成 $\Phi = \bigwedge_{i=1}^{m} (l_{i_1}, l_{i_2}, l_{i_3})$ 以示和 SAT 区别。 NAE-k-SAT 表示每个子句的文字数不超过 $k$ 的 NAE-SAT 问题。
+
+    (1) (5 分) 对于给定的 3-合取范式 $\Phi = \bigwedge_{i=1}^{m} (l_{i_1} \lor l_{i_2} \lor l_{i_3})$。 构造新的公式 $\Psi = \bigwedge_{i=1}^{m} (l_{i_1}, l_{i_2}, l_{i_3}, s)$。 其中 $s$ 是每个子句共有的一个新的变量。 证明$\Psi$存在满足赋值当且仅当$\Psi$存在$s=0$的NAE赋值(即使得每个子句的几个文字取值不完全相同)。
+
+    (2) (5 分) 考虑在 (1) 中构造的公式 $\Psi$。 证明 $\Psi$ 存在 $s=0$ 的 NAE 赋值当且仅当 $\Psi$ 存在 NAE 赋值。 并以此证明 NAE-4-SAT 是 NP-complete 问题。
+
+    (3) (5 分) 证明 NAE-3-SAT 是 NP-complete 问题。 (提示: 从 NAE-4-SAT 开始归约， 尝试缩短子句长度。)
+
+    (4) (5 分) 和 MAX-3-SAT 类似, Max-NAE-3-SAT 问题是 NAE-3-SAT 问题的优化版本。 给定每个子句恰好有三个不同变量的 NAE-3-SAT 公式 $\Phi$, 寻找对 $\Phi$ 的变量的一个赋值, 使满足 NAE 条件的子句数量尽可能多。 简要说明 Max-NAE-3-SAT 是 NP-hard 问题， 并设计一个常数近似比的针对 Max-NAE-3-SAT 的随机算法, 即该算法满足 NAE 条件的子句的期望数目必须达到至少是最优解数目的常数倍，
+
+    (5) (5 分) 将 (4) 中的随机算法改成确定性算法， (允许跳过 (4) 直接做 (5) 的确定性算法， 可以得到 (4) (5) 的全部分数。)
+
+\newpage
+\section*{孙老师随机算法、近似算法历年考试题}
+\subsection*{2019年}
+\begin{itemize}
+    \item[(1)] 设计算法证明矩阵$AB=BA$（A、B都是$n * n$ 矩阵），并说明算法的复杂度。
+    \vspace{12em}
+    \item[(2)] 解释什么是BPP（$2/3$）。
+    \vspace{12em}
+    \item[(3)] 证明BPP（2/3）= BPP（0.99）。
+    \vspace{12em}
+\end{itemize}
+
+\newpage
+\subsection*{2020年}
+\begin{itemize}
+    \item[1.]  (18分) 假设将 $2n$ 个球独立随机的放入 $n$ 个盒子中，用随机变量 $X$ 表示空盒子的个数，用 $0-1$ 随机变量 $Y_i$ 表示第 $i$ 个盒子是否为空 ($Y_i=1$ 表示非空):
+    \begin{itemize}
+        \item[(1)] (4分) 利用 $X=Y_1+Y_2+\dots+Y_n$ 证明: $E(X) = n \left(1-\frac{1}{n}\right)^{2n}$.
+        \item[(2)] (8分) 证明: $Y_i$ 彼此负相关, 即 $\forall i_1 < i_2$,
+        $$ E(Y_{i_1}Y_{i_2}) - E(Y_{i_1})E(Y_{i_2}) < 0. $$
+        \item[(3)] (4分) 利用 $X=Y_1+Y_2+\dots+Y_n$ 和 (2) 的结论证明 $var(X)$ 的上限: $var(X) \le n/4$.
+        \item[(4)] (2分) 证明: $Pr \left( \frac{n}{e^2} - n^{0.51} \le X \le \frac{n}{e^2} + n^{0.51} \right) \ge 1-o(1)$.
+    \end{itemize}
+    \vspace{18em} % Add some vertical space
+    \item[2.] (12分) 对某个问题 Q, 已知一个 BPP 算法 A, 其每次运行成功的概率不小于 $\frac{1}{2}+\frac{1}{n}$, 其中 $n$ 是问题 Q 的输入规模。请设计一个 BPP 算法 (通过调用算法 A) 求解问题 Q, 使得算法的成功概率至少是 $1-\frac{1}{n^c}$, 并且算法的运行时间不超过 $O(n^c)$, $c$ 是某个常数。
+\end{itemize}
+
+\newpage
+\subsection*{2021年}
+\begin{itemize}
+    \item[1.] 同2020年1题，把2n变成n。
+    \vspace{1em} % Add some vertical space
+    \item[2.] (10分) 设计一个复杂度为$O(n^3)$的算法，验证三个$n\times n$的0-1矩阵$A,B,C$在$\mathbb{F}_2$上是否有$ABC=I$
+\end{itemize}
+
+\newpage
+\subsection*{2023年}
+\begin{itemize}
+    \item[1.] 同2020年1题。
+    \vspace{1em} 
+    \item[2.] (15分) 设计一个复杂度为 $O(n^3)$ 的随机算法, 验证三个 $n \times n$ 的 $0-1$ 矩阵 $A$, $B$, $C$ 在 $\mathbb{F}_2$ 上是否有 $AB \oplus C = I$。
+\end{itemize}
+
+\end{document}

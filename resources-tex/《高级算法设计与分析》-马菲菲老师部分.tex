@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{longtable}
+\title{高级算法设计与分析——ILP线性整数规划作业}
+\author{}
+\date{}
+\usepackage{float}
+
+\begin{document}
+\vspace{-9em}
+\section*{分支限界法问题}
+下列表格展示了在用 branch and bound 方法求解一个最小化整数线性规划问题时,对于所有可能的变量取值组合的线性规划松弛结果。该问题的决策变量$x_1, x_2, x_3=0$或$1$, $x_4 \ge 0$。假设 branch and bound 方法在选择 active partial solution 时,采用 depth forward best back 规则;在分支时,选择松弛得到的解中,取值带有小数且离整数最近的整数变量进行分支。请画出求解该问题的 branch and bound 树形图,并求出最优解。
+
+
+\begin{longtable}{|c|c|c|l|l|}
+\caption{线性规划松弛结果} \label{tab:lp_relaxation} \\
+\hline
+\multicolumn{3}{|c|}{Branching Constraints} & \multicolumn{1}{c|}{LP Relaxation Solution} & \multicolumn{1}{c|}{Objective Value} \\
+\hline
+$x_1$ & $x_2$ & $x_3$ & \multicolumn{1}{c|}{$(x_1, x_2, x_3, x_4)$} & \multicolumn{1}{c|}{$\tilde{v}$} \\
+\hline
+\endfirsthead
+\multicolumn{5}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\multicolumn{3}{|c|}{Branching Constraints} & \multicolumn{1}{c|}{LP Relaxation Solution} & \multicolumn{1}{c|}{Objective Value} \\
+\hline
+$x_1$ & $x_2$ & $x_3$ & \multicolumn{1}{c|}{$(x_1, x_2, x_3, x_4)$} & \multicolumn{1}{c|}{$\tilde{v}$} \\
+\hline
+\endhead
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+\hline
+\endlastfoot
+\# & \# & \# & (0, 0.60, 0.14, 0) & 60.9 \\
+\# & \# & 0 & (0.20, 0.60, 0, 0) & 61.0 \\
+\# & \# & 1 & (0.60, 0, 1, 0) & 69.0 \\
+\# & 0 & \# & (0.60, 0, 1, 0) & 69.0 \\
+\# & 0 & 0 & infeasible & --- \\
+\# & 0 & 1 & (0.60, 0, 1, 0) & 69.0 \\
+\# & 1 & \# & (0, 1, 0, 400) & 4090.0 \\
+\# & 1 & 0 & (0, 1, 0, 400) & 4090.0 \\
+\# & 1 & 1 & infeasible & --- \\
+0 & \# & \# & (0, 0.60, 0.14, 0) & 60.9 \\
+0 & \# & 0 & (0, 0.60, 0, 1.9) & 73.6 \\
+0 & \# & 1 & (0, 0, 1, 6) & 108.0 \\
+0 & 0 & \# & (0, 0, 1, 6) & 108.0 \\
+0 & 0 & 0 & infeasible & --- \\
+0 & 0 & 1 & (0, 0, 1, 6) & 108.0 \\
+0 & 1 & \# & (0, 1, 0, 400) & 4090.0 \\
+0 & 1 & 0 & (0, 1, 0, 400) & 4090.0 \\
+0 & 1 & 1 & infeasible & --- \\
+1 & \# & \# & (1, 0.33, 0, 0) & 65.0 \\
+1 & \# & 0 & (1, 0.33, 0, 0) & 65.0 \\
+1 & \# & 1 & (1, 0, 1, 0) & 83.0 \\
+1 & 0 & \# & (1, 0, 0.71, 0) & 69.3 \\
+1 & 0 & 0 & infeasible & --- \\
+1 & 0 & 1 & (1, 0, 1, 0) & 83.0 \\
+1 & 1 & \# & (1, 1, 0, 400) & 4125.0 \\
+1 & 1 & 0 & (1, 1, 0, 400) & 4125.0 \\
+1 & 1 & 1 & infeasible & --- \\
+\end{longtable}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{mermaid-diagram-2025-05-24-150723.png}
+    % \caption{Reference Score Distribution.} 
+    \label{fig4}
+\end{figure}
+
+\newpage
+\section*{割平面法问题}
+在求解一个纯整数规划问题的线性规划松弛的过程中,基变量 $x_1, x_2, x_3$ 等已被求解, $x_4, x_5, x_6, x_7$ 为非基变量,单纯形表中包含 $x_1$ 的一行如下:
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|l|}
+\hline
+Basic & RHS & $x_4$ & $x_5$ & $x_6$ & $x_7$ & Nonbasic \\ \hline
+$x_1 = $ & 1.6 & -2.7 & 1.1 & -2.3 & 13.4 & coefficients \\ \hline
+\end{tabular}
+\end{center}
+即 $x_{1}-2.7x_{4}+1.1x_{5}-2.3x_{6}+13.4x_{7}=1.6$
+\begin{enumerate}
+    \item 请写出这行等式对应的Gomory fractional cut 及其推导过程。
+    \item 请写出这行等式对应的 enhanced Gomory fractional cut 及其推导过程。
+\end{enumerate}
+
+\newpage
+\section*{对偶问题}
+请写出以下线性规划问题的对偶问题及其推导过程,并说明原问题可行解的目标函数值与对偶问题的可行解的目标函数值之间的关系。
+\begin{align*}
+\text{Min} \quad & 8x_1 + 10x_2 \\
+\text{s.t.} \quad & 3x_1 + 24x_2 \ge 6 \\
+& -2x_1 + 4x_2 \ge -10 \\
+& 2x_1 + 5x_2 \ge 8 \\
+& x_1, x_2 \ge 0
+\end{align*}
+
+\newpage
+\section*{N皇后问题}
+在一个$N \times N$的棋盘上放置N个皇后，使得每一行、每一列以及每一对角线上不能有两个以上的皇后。我们对于每一列 $(1 \le j \le N)$ 都引入一个变量 $X_j$，$X_j$ 的值域为 $\{1,2,\dots,N\}$，表示该列的皇后放在第$X_j$行。对于5皇后问题，假设已将第1列的皇后放在第2行的位置，即$X_1=2$。其余四个变量的值域分别是：$D(X_2)=\{4,5\}$, $D(X_3)=\{1,3,5\}$, $D(X_4)=\{1,3,4\}$, $D(X_5)=\{1,3,4,5\}$，如下图所示：
+
+\begin{enumerate}
+    \item[1)] 请采用约束传播算法AC-4回答以下问题：
+    \begin{enumerate}
+        
+    \item[i.] 写出下面的支持表S的最后三行：
+        \begin{center}
+            \begin{longtable}{|l|l|}
+            \hline
+            \endfirsthead
+            \hline
+            \endhead
+            \hline
+            \endfoot
+            \hline
+            \endlastfoot
+            $s(X_2,4)$ & $\langle X_3,1 \rangle, \langle X_4,1 \rangle, \langle X_4,3 \rangle, \langle X_5,3 \rangle, \langle X_5,5 \rangle$ \\ \hline
+            $s(X_2,5)$ & $\langle X_3,1 \rangle, \langle X_3,3 \rangle, \langle X_4,1 \rangle, \langle X_4,4 \rangle, \langle X_5,1 \rangle, \langle X_5,3 \rangle, \langle X_5,4 \rangle$ \\ \hline
+            $s(X_3,1)$ & $\langle X_2,4 \rangle, \langle X_2,5 \rangle, \langle X_4,3 \rangle, \langle X_4,4 \rangle, \langle X_5,4 \rangle, \langle X_5,5 \rangle$ \\ \hline
+            $s(X_3,3)$ & $\langle X_2,5 \rangle, \langle X_4,1 \rangle, \langle X_5,4 \rangle$ \\ \hline
+            $s(X_3,5)$ & $\langle X_4,1 \rangle, \langle X_4,3 \rangle, \langle X_5,1 \rangle, \langle X_5,4 \rangle$ \\ \hline
+            $s(X_4,1)$ & $\langle X_2,4 \rangle, \langle X_2,5 \rangle, \langle X_3,3 \rangle, \langle X_3,5 \rangle, \langle X_5,3 \rangle, \langle X_5,4 \rangle, \langle X_5,5 \rangle$ \\ \hline
+            $s(X_4,3)$ & $\langle X_2,4 \rangle, \langle X_3,1 \rangle, \langle X_3,5 \rangle, \langle X_5,1 \rangle, \langle X_5,5 \rangle$ \\ \hline
+            $s(X_4,4)$ & $\langle X_2,5 \rangle, \langle X_3,1 \rangle, \langle X_5,1 \rangle$ \\ \hline
+            $s(X_5,1)$ & $\langle X_2,5 \rangle, \langle X_3,5 \rangle, \langle X_4,3 \rangle, \langle X_4,4 \rangle$ \\ \hline
+            $s(X_5,3)$ &  \\ \hline
+            $s(X_5,4)$ &  \\ \hline
+            $s(X_5,5)$ &  \\ \hline
+            \end{longtable}
+        \end{center}
+
+    
+        \item[ii.] 写出下面的计数表counter的最后三行
+        
+            \begin{center}
+            \begin{longtable}{|l|c|c|c|c|}
+            \hline
+            counter & $X_2$ & $X_3$ & $X_4$ & $X_5$ \\ \hline
+            \endfirsthead
+            \hline
+            \endhead
+            \hline
+            \endfoot
+            \hline
+            \endlastfoot
+            $X_2,4$ & * & 1 & 2 & 2 \\ \hline
+            $X_2,5$ & * & 2 & 2 & 3 \\ \hline
+            $X_3,1$ & 2 & * & 2 & 2 \\ \hline
+            $X_3,3$ & 1 & * & 1 & 1 \\ \hline
+            $X_3,5$ & 0 & * & 2 & 2 \\ \hline
+            $X_4,1$ & 2 & 2 & * & 3 \\ \hline
+            $X_4,3$ & 1 & 2 & * & 2 \\ \hline
+            $X_4,4$ & 1 & 1 & * & 1 \\ \hline
+            $X_5,1$ & 1 & 1 & 2 & * \\ \hline
+            $X_5,3$ &   &   &   & * \\ \hline
+            $X_5,4$ &   &   &   & * \\ \hline
+            $X_5,5$ &   &   &   & * \\ \hline
+            \end{longtable}
+            \end{center}
+
+        \item[iii.] 请写出约束传播对变量X2,X3,X4,X5的值域的消减过程,以及满足弧一致性时,每个变量的值域。
+    \end{enumerate}
+    
+    \item[2)] 假设我们希望枚举5皇后问题的所有不同的解, 完备求解算法当前已经完成了对 $(X_1=2)$ 这个分支的搜索, 应该添加哪些打破对称的约束, 以避免后续搜索遇到与 $(X_1=2)$ 这个分支等价的解?
+\end{enumerate}
+\newpage
+% 水平翻转：翻转后的解为
+% $$
+% S_h=\{N+1-X_1,\dots,N+1-X_N\}
+% $$
+% 垂直翻转：翻转后的解为
+% $$
+% S_v=\{X_N,\dots,X_1\}
+% $$
+% 180度翻转：翻转后的解为
+% $$
+% S_{180}=\{N+1-X_N,\dots,N+1-X_1\}
+% $$
+% 则应添加的约束为：
+% $$
+%     (X_1,X_2,X_3,X_4,X_5)\leq (6-X_1,6-X_2,\dots,6-X_5)
+% $$
+% $$
+%     (X_1,X_2,X_3,X_4,X_5)\leq (X_5,X_4,\dots,X_1)
+% $$
+% $$
+%     (X_1,X_2,X_3,X_4,X_5)\leq (6-X_5,6-X_4,\dots,6-X_1)
+% $$
+
+\section*{2025年考试内容}
+\begin{enumerate}
+    \item[1. ]分支限界法，与作业题类似，但比较简单。
+    \item[2. ]割平面法，与作业题类似；第二问说明求出的Gomory fractional是否是割平面，解释原因。
+    \item[3. ]AC-4算法，第一问给出满足弧一致性的值域；第二问说明AC-4算法；第三问，同N皇后问题作业题的第三问。
+\end{enumerate}
+\end{document}

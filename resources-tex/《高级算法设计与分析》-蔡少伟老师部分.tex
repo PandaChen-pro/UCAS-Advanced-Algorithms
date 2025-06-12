@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{longtable}
+\title{高级算法设计与分析——蔡老师考试题目}
+\author{}
+\date{}
+
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{float}
+
+\begin{document}
+% \maketitle
+\vspace{-9em}
+% 本文参考：
+
+% [1]~~ \url{https://zhuanlan.zhihu.com/p/401665397}
+
+% [2]~~ \url{https://zhuanlan.zhihu.com/p/634879711}
+\section*{2019年}
+\begin{enumerate}
+    \item[1. ](5分)什么是Partial MaxSAT？
+    
+    最大加权团问题：是在一个每个顶点都带有一个“权重”或“价值”的图中，寻找一个所有顶点都相互连接的子图（即“团”），使得这个团中所有顶点的权重之和最大。    将最大加权团编码成Partial MaxSAT。
+    \vspace{10em}
+    \item[2. ](10分)k-vetex cover问题：对于一个给定的图，能否只用 k 个顶点，就‘覆盖’住图中所有的边？
+    
+    为k-vertex cover问题设计局部搜索算法，使得k个顶点覆盖较多的边。
+    \vspace{10em}
+    \item[3. ](10分,二选一)
+        \begin{enumerate}
+            \item[3.1] 列出VC的两条归约规则（1度除外），并证明其中一条 
+            \item[3.2] 最大加权团的归约
+        \end{enumerate}
+\end{enumerate}
+
+\newpage
+\section*{2020年}
+\begin{enumerate}
+    \item[6. ](7分)最小支配集问题定义如下：给定一个简单图$G=(V,E)$，找到一个规模最小的顶点集合$D$，使得$V \setminus D$ 的任何一个点都与$D$中至少一个顶点相邻。请将最小支配集问题编码为 Partial MaxSAT 问题。
+    \vspace{10em}
+    \item[7. ](1) (8分)设计一个求解 Partial MaxSAT 问题的局部搜索算法。
+    \vspace{10em}
+    \item[7. ](2) (7分)从下面(a)和(b)选择一个进行算法分析：
+        \begin{enumerate}
+            \item[(a)] 描述实验方案，说明如何评估算法性能，以及分析算法中的策略。
+            \item[(b)] 如果每个句子恰好有$k$个文字并且都是从所有文字均匀随机取的，从理论上分析利用局部搜索算法（可进行调整或简化）找到一个可行的成功概率。
+        \end{enumerate}
+    \vspace{10em}
+    \item[8. ](8分)最小加权顶点覆盖问题定义如下：给定一个点加权的无向图$G=(V,E,w)$，每个点$v$有一个正整数权值$w(v)$，要求找出总权值最小的顶点覆盖。请描述至少两条简化规则，并给出证明。
+\end{enumerate}
+
+\newpage
+\section*{2021年}
+\begin{enumerate}
+    \item[1. ](25分)最小集合覆盖问题是经典的NP-完全问题，它在实际中有广泛的应用，例如日程安排、资源分配、网络优化等。
+    
+    问题定义：给定一个\textbf{全集} $U$ 和一组 $U$ 的\textbf{子集} $S = \{S_1, S_2, \ldots, S_m\}$，其中每个 $S_i \subseteq U$。问题是找到 $S$ 的一个\textbf{最小子集} $S' \subseteq S$，使得 $S'$ 中所有子集的并集等于全集 $U$。
+
+    \begin{enumerate}
+        \item[(1)](5分)写出两条集合覆盖的规约原则。
+        \vspace{4em}
+        \item[(2)](5分)给出将最小集合覆盖问题编码成合适的sat问题的方案，并且给出一个具体的集合覆盖实例对应的编码实例。
+        \vspace{10em}
+        \item[(3)](15分)设计针对第二小问中编码所得的SAT问题的算法（不限于通用的SAT求解器，可以考虑针对此特定规约特点的算法），写出伪代码并解释其工作原理。同时，设计一个实验方案来验证和评估你的算法的性能（例如考虑不同规模的输入实例、性能指标、对比方法等）。
+    \end{enumerate}
+    \vspace{10em}
+\end{enumerate}
+
+\newpage
+\section*{2023年}
+\begin{enumerate}
+    \item[1. ](10分)解释什么是线性整数规划问题。设计一个局部搜索算法用于求解线性整数规划问题。
+\end{enumerate}
+\newpage
+\section*{2025年}
+\begin{enumerate}
+    \item[1. ](15分)K-着色问题编码成SAT问题。
+    \item[2. ](15分)写出一个局部搜索算法的伪代码，并解释策略。
+\end{enumerate}
+
+\end{document}
