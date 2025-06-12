@@ -11,13 +11,16 @@
 
 ## 一些笔记
 
-陈世腾老师随机算法、近似算法笔记：https://olive-asparagus-23e.notion.site/1f04d4a5d8f880d78c20e3af6a4d1889?source=copy_link
+陈世腾老师:[随机算法与近似算法笔记](https://olive-asparagus-23e.notion.site/1f04d4a5d8f880d78c20e3af6a4d1889?source=copy_link)
 
-蔡少伟老师回溯算法、局部搜算算法笔记：https://olive-asparagus-23e.notion.site/1f44d4a5d8f880a394c0cde0f629c754?source=copy_link
 
-马菲菲老师线性整数规划算法笔记：https://olive-asparagus-23e.notion.site/1f94d4a5d8f8807e8b50d13afa2f9b6c?source=copy_link
+蔡少伟老师:[回溯算法、局部搜算算法笔记](https://olive-asparagus-23e.notion.site/1f44d4a5d8f880a394c0cde0f629c754?source=copy_link)
 
-马菲菲老师约束满足算法笔记：https://olive-asparagus-23e.notion.site/1f94d4a5d8f8808bb0bafadf181b72e5?source=copy_link
+
+马菲菲老师:
+- [线性整数规划算法笔记](https://olive-asparagus-23e.notion.site/1f94d4a5d8f8807e8b50d13afa2f9b6c?source=copy_link)
+- [约束满足算法笔记](https://olive-asparagus-23e.notion.site/1f94d4a5d8f8808bb0bafadf181b72e5?source=copy_link)
+
 
 ## 致谢
 本仓库参考了以下两位师兄的知乎分享，感谢他们的无私贡献：
